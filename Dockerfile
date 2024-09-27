@@ -1,12 +1,28 @@
-FROM ghcr.io/puppeteer/puppeteer:23.3.0
+# FROM ghcr.io/puppeteer/puppeteer:23.3.0
+FROM node:16-alpine
 
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
 WORKDIR /usr/src/app
+COPY package.json .
 
-COPY package*.json ./
-RUN npm ci
-RUN npm run build
+RUN npm install
 COPY . .
+RUN npm run build
 CMD [ "node", "dist/app.js" ]
+
+
+
+
+
+# FROM ghcr.io/puppeteer/puppeteer:23.3.0
+
+# WORKDIR /usr/src
+
+# COPY package*.json ./
+# RUN npm ci
+# # RUN npm ci  && npm install typescript tsc ts-node && npm run build
+# RUN npm install typescript tsc ts-node
+# RUN npm run build
+# COPY . .
+
+# CMD [ "node", "dist/app.js" ]
