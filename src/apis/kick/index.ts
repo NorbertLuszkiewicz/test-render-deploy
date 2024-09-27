@@ -1,4 +1,4 @@
-import { KickApiWrapper } from "kick.com-api";
+// import { KickApiWrapper } from "kick.com-api";
 import { createClient } from "@retconned/kick-js";
 import ComfyJS from "comfy.js";
 import axios from "axios";
@@ -13,21 +13,22 @@ import { thanks } from "../twitch/events/events";
 
 const client = createClient("overpow", { logger: true });
 
-const kickApi = new KickApiWrapper({
-  userAgent: "DynamixBot",
-});
+// const kickApi = new KickApiWrapper({
+//   userAgent: "DynamixBot",
+// });
 
 export let isLive: boolean = false;
 export let streamersIds: { name: string; chatroomId: number }[] = [];
 
 const getKickChannelData = async nick => {
-  try {
-    const data = await kickApi.fetchChannelData(nick);
-    return data;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
+  // try {
+  //   const data = await kickApi.fetchChannelData(nick);
+  //   return data;
+  // } catch (error) {
+  //   console.log(error);
+  //   return false;
+  // }
+  return { livestream: true, chatroom: { id: 40723515 } };
 };
 
 export const initKickChat = async streamer => {
